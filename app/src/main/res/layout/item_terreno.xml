@@ -1,0 +1,51 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="8dp"
+    android:background="@drawable/fondo_boton">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_ubicacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ubicación"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_poligono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Polígono"/>
+
+        <TextView
+            android:id="@+id/tv_parcela"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Parcela"/>
+
+        <TextView
+            android:id="@+id/tv_superficie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Superficie"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_eliminar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="X"
+        android:textColor="@color/black"
+        android:background="@drawable/fondo_boton01"
+        android:layout_marginStart="8dp"/>
+</LinearLayout>
+

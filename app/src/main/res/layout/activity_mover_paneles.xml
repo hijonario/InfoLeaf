@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_menu"
+    tools:context=".MoverPaneles">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/DP_fechas"
+        android:layout_width="169dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="116dp"
+        android:clickable="true"
+        android:focusable="false"
+        android:inputType="none"
+        android:background="@drawable/fondo_boton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.917"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titulo_Diario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/baloo_da"
+        android:text="Diario"
+        android:textSize="34dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_salir_D"
+        android:layout_width="91dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="654dp"
+        android:background="@drawable/fondo_boton"
+        android:onClick="salir"
+        android:text="Salir"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/fondo_boton"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Contenedor izquierdo (ajustado para no ocupar todo el espacio) -->
+        <LinearLayout
+            android:id="@+id/left_container"
+            android:layout_width="23dp"
+            android:layout_height="216dp"
+            android:layout_margin="16dp"
+            android:layout_weight="1"
+            android:background="#D3D3D3"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <!-- Bloques más pequeños -->
+            <TextView
+                android:id="@+id/block_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="#FFEB3B"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="Bloque 1" />
+
+            <TextView
+                android:id="@+id/block_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="#FFEB3B"
+                android:gravity="center"
+                android:minHeight="60dp"
+                android:padding="12dp"
+                android:text="Bloque 2" />
+        </LinearLayout>
+
+        <!-- Contenedor derecho (también ajustado) -->
+        <LinearLayout
+            android:id="@+id/right_container"
+            android:layout_width="wrap_content"
+            android:layout_height="217dp"
+            android:layout_margin="16dp"
+            android:layout_weight="1"
+            android:background="#E0E0E0"
+            android:orientation="vertical"
+            android:padding="8dp" />
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/combo_tierras"
+        android:layout_width="187dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="116dp"
+        android:background="@drawable/fondo_spinner"
+        android:spinnerMode="dropdown"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextText5"
+        android:layout_width="372dp"
+        android:layout_height="127dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="448dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/fondo_boton"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="text"
+        android:textIsSelectable="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="324dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="464dp"
+        android:fillViewport="true"
+        android:overScrollMode="ifContentScrolls"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:background="#597E7E7E"
+            android:scrollbars="vertical" />
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/btn_escribir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="528dp"
+        android:background="@drawable/fondo_boton"
+        android:onClick="escribirDescripcion"
+        android:text="Escribir"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_cancelar_D"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="588dp"
+        android:background="@drawable/fondo_boton"
+        android:onClick="limpiar"
+        android:text="Cancelar"
+        android:textColor="@color/black"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.937"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_agregar_D"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="588dp"
+        android:background="@drawable/fondo_boton"
+        android:onClick="agregarEntradaDiario"
+        android:text="Agregar"
+        android:textColor="@color/black"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.593"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ib_verDiario"
+        android:layout_width="65dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/transparente"
+        android:onClick="irVistaDiario"
+        android:scaleType="fitCenter"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.852"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/diario_icono" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

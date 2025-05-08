@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:translationZ="10dp"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/baloo_da"
+        android:text="@string/login"
+        android:textColor="@color/material_dynamic_neutral10"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.195" />
+
+    <EditText
+        android:id="@+id/et_usuarioIS"
+        android:layout_width="280dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="96dp"
+        android:background="@drawable/borde01"
+        android:drawableLeft="@drawable/usuario_icono"
+        android:drawablePadding="30dp"
+        android:ems="10"
+        android:hint="@string/usuario"
+        android:inputType="text"
+        android:paddingStart="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/et_contrasenaIS"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/et_contrasenaIS"
+        android:layout_width="280dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="350dp"
+        android:background="@drawable/borde02"
+        android:drawableLeft="@drawable/llave_icono"
+        android:drawablePadding="30dp"
+        android:ems="10"
+        android:hint="@string/contrasena"
+        android:inputType="textPassword"
+        android:paddingStart="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_usuarioIS" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="150dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="95dp"
+        android:layout_marginEnd="281dp"
+        android:layout_marginBottom="207dp"
+        android:background="@drawable/boton01redondeado"
+        android:fontFamily="@font/baloo_da"
+        android:onClick="registrar"
+        android:text="@string/registrar"
+        android:textColor="@android:color/system_accent1_400"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_contrasenaIS" />
+
+    <ImageButton
+        android:id="@+id/id_iniciar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="87dp"
+        android:layout_marginBottom="-40dp"
+        android:background="#00FFFFFF"
+        android:elevation="10dp"
+
+        android:onClick="iniciarSesion"
+        android:scaleType="fitCenter"
+        android:text=""
+        android:translationZ="0dp"
+        app:layout_constraintBottom_toTopOf="@id/et_contrasenaIS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/imgen_continuar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

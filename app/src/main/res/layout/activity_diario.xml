@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_menu"
+    tools:context=".Diario">
+
+    <TextView
+        android:id="@+id/titulo_VerDiario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/baloo_da"
+        android:text="Diario"
+        android:textSize="34dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_salir_DI"
+        android:layout_width="91dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="654dp"
+        android:background="@drawable/fondo_boton"
+        android:onClick="salir"
+        android:text="Salir"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/DP_fechas"
+        android:layout_width="115dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/fondo_boton"
+        android:clickable="true"
+        android:focusable="false"
+        android:inputType="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextText7"
+        android:layout_width="373dp"
+        android:layout_height="313dp"
+        android:layout_marginTop="116dp"
+        android:background="@drawable/fondo_boton"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="text"
+        android:textIsSelectable="false"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="331dp"
+        android:layout_height="272dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="136dp"
+        android:fillViewport="true"
+        android:overScrollMode="ifContentScrolls"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#599E9E9E"
+            android:padding="8dp"
+            android:scrollbars="vertical"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_buscar_DI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="440dp"
+        android:background="@drawable/fondo_boton"
+        android:onClick="descripcionDelDia"
+        android:text="Buscar"
+        android:textColor="@color/black"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

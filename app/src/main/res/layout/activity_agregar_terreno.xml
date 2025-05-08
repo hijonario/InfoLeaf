@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_menu"
+    tools:context=".AgregarTerreno">
+
+    <Button
+        android:id="@+id/btn_salir_AT"
+        android:layout_width="91dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginBottom="654dp"
+        android:background="@drawable/fondo_boton"
+        android:onClick="salir"
+        android:text="Salir"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="137dp"
+        android:layout_marginBottom="641dp"
+        android:fontFamily="@font/baloo_da"
+        android:text="@string/agregarTierra"
+        android:textSize="34dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/editTextText2"
+        android:layout_width="377dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="120dp"
+        android:clickable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="text"
+        android:textIsSelectable="false"
+        android:background="@drawable/fondo_boton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_nombreAT"
+        android:layout_width="109dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="156dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/cb_pozo_AT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="Pozo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.884"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_AT"
+        android:layout_width="126dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="156dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextText6"
+        android:layout_width="377dp"
+        android:layout_height="203dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="260dp"
+        android:background="@drawable/fondo_boton"
+        android:clickable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="text"
+        android:textIsSelectable="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_ubicacion_AT"
+        android:layout_width="235dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="280dp"
+        android:ems="10"
+        android:hint="Ubicación"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_poligono_AT"
+        android:layout_width="141dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="340dp"
+        android:ems="10"
+        android:hint="Poligono"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_parcela_AT"
+        android:layout_width="162dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="196dp"
+        android:layout_marginTop="340dp"
+        android:ems="10"
+        android:hint="Num Parcela"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_superficie_AT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="400dp"
+        android:ems="10"
+        android:hint="Superficie"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/list_parcela_AT"
+        android:layout_width="240dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="480dp"
+        android:background="#99FFFFFF"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_agregar_AT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="576dp"
+        android:background="@drawable/fondo_boton"
+        android:onClick="guardarTierra"
+        android:text="Agregar"
+        android:textColor="@color/black"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.907"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_cancelar_AT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="652dp"
+        android:background="@drawable/fondo_boton"
+        android:onClick="salir"
+        android:text="Cancelar"
+        android:textColor="@color/black"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.924"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_anadir_AT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:background="@drawable/fondo_boton01"
+        android:onClick="agregarTerreno"
+        android:text="Añadir"
+        android:textColor="@color/black"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.834"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ib_mapa"
+        android:layout_width="54dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="328dp"
+        android:layout_marginTop="272dp"
+        android:background="@null"
+        android:onClick="abrirMapa"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mapa_icono" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

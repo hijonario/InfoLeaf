@@ -1,7 +1,13 @@
 package com.example.infoleaf;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,4 +78,54 @@ public class Produccion extends AppCompatActivity {
             Toast.makeText(this, "Error cargando producciones", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void salir(View view) {
+        finish();
+    }
+
+    public void mostrarPopupBotones(View anchorView) {
+        // Crear el diálogo
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.popup_opciones_produccion);
+
+        // Configurar el tamaño y posición
+        Window window = dialog.getWindow();
+        if (window != null) {
+            window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+            window.setGravity(Gravity.CENTER);
+
+            // Opcional: añadir animación
+            // window.setWindowAnimations(R.style.DialogAnimation);
+        }
+
+        // Configurar los botones
+        Button btnOption1 = dialog.findViewById(R.id.btnUva);
+        Button btnOption2 = dialog.findViewById(R.id.btnOlivo);
+        Button btnOption3 = dialog.findViewById(R.id.btnCereal);
+
+        btnOption1.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AgregarProduccion.class);
+            intent.putExtra("tipoProduccion", "uva");
+            intent.putExtra("id", id);
+            startActivity(intent);
+        });
+
+        btnOption2.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AgregarProduccion.class);
+            intent.putExtra("tipoProduccion", "olivo");
+            intent.putExtra("id", id);
+            startActivity(intent);
+        });
+
+        btnOption3.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AgregarProduccion.class);
+            intent.putExtra("tipoProduccion", "cereal");
+            intent.putExtra("id", id);
+            startActivity(intent);
+        });
+        dialog.show();
+    }
+
+
 }

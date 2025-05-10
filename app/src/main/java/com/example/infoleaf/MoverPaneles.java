@@ -164,6 +164,7 @@ public class MoverPaneles extends AppCompatActivity {
 
             datePicker.show(getSupportFragmentManager(), "DATE_PICKER_TAG");
         });
+
     }
 
     private void configurarSpinnerTierras() {

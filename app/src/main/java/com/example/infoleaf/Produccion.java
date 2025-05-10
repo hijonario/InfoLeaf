@@ -84,22 +84,17 @@ public class Produccion extends AppCompatActivity {
     }
 
     public void mostrarPopupBotones(View anchorView) {
-        // Crear el diálogo
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.popup_opciones_produccion);
 
-        // Configurar el tamaño y posición
         Window window = dialog.getWindow();
         if (window != null) {
             window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
             window.setGravity(Gravity.CENTER);
 
-            // Opcional: añadir animación
-            // window.setWindowAnimations(R.style.DialogAnimation);
         }
 
-        // Configurar los botones
         Button btnOption1 = dialog.findViewById(R.id.btnUva);
         Button btnOption2 = dialog.findViewById(R.id.btnOlivo);
         Button btnOption3 = dialog.findViewById(R.id.btnCereal);

@@ -10,10 +10,35 @@
     <string name="email">Email</string>
     <string name="telefono">Teléfono</string>
 
+    <string name="ubicacion">Ubicación</string>
+    <string name="poligono">Poligono</string>
+    <string name="parcela">Parcela</string>
+    <string name="superficie">Superficie</string>
+
     <string name="diario">Diario</string>
     <string name="gastos">Gastos</string>
     <string name="produccion">Producción</string>
 
     <string name="terrenos">Terrenos</string>
     <string name="agregarTierra">Agrega tu Terreno</string>
+    <string name="agregarProduccion">Agregar Producción</string>
+    <string name="agregarGasto">Agrega tu Gasto</string>
+
+    <string name="salir">Salir</string>
+    <string name="buscar">Buscar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="agregar">Agregar</string>
+    <string name="escribir">Escribir</string>
+    <string name="anadir">Añadir</string>
+    <string name="cantidad">Cantidad €</string>
+    <string name="descripcion">Descripción</string>
+
+    <string name="pozo">Pozo</string>
+    <string name="variedad">Variedad</string>
+    <string name="grado">Grado</string>
+    <string name="bodega">Bodega</string>
+    <string name="kilos">Kilos</string>
+    <string name="kilosArbol">Kilos del Arbol</string>
+    <string name="kilosSuelo">Kilos del Suelo</string>
+
 </resources>

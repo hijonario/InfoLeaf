@@ -15,23 +15,19 @@
         android:layout_marginStart="136dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="137dp"
-        android:layout_marginBottom="641dp"
         android:fontFamily="@font/baloo_da"
         android:text="@string/agregarProduccion"
         android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_salir_AP"
         android:layout_width="91dp"
         android:layout_height="47dp"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="654dp"
         android:background="@drawable/fondo_boton"
         android:fontFamily="@font/baloo_da"
         android:onClick="salir"
@@ -39,12 +35,10 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/combo_tierras"
@@ -68,6 +62,7 @@
         android:focusable="false"
         android:inputType="none"
         android:background="@drawable/fondo_boton"
+        android:paddingStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.917"
         app:layout_constraintStart_toStartOf="parent"

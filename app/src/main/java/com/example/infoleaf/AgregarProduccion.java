@@ -245,7 +245,8 @@ public class AgregarProduccion extends AppCompatActivity {
             }
 
             if (kilosSuelo.getText().toString().isEmpty()) {
-                kilosSuelo.setText(0);
+                kilosSuelo.setText("0");
+
             }
 
             java.util.Date fecha;

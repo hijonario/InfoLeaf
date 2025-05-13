@@ -80,6 +80,8 @@ public class AgregarTerreno extends AppCompatActivity {
             etParcela.setText("");
             etUbicacion.setText("");
             etSuperficie.setText("");
+        }else{
+            Toast.makeText(this, "Agrega correctamente todos los campos", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -108,7 +110,7 @@ public class AgregarTerreno extends AppCompatActivity {
         String idUsuario = id;
 
         if (listaTerrenos.isEmpty()) {
-            Toast.makeText(this, "Debes añadir al menos un terreno", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Debes añadir al menos un poligono", Toast.LENGTH_SHORT).show();
             return;
         }
 

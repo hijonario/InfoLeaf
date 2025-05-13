@@ -52,8 +52,10 @@ public class Diario extends AppCompatActivity {
     private void configurarDatePicker() {
         datePickerEditText = findViewById(R.id.DP_fechas);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        Date hoy = new Date();
 
-        datePickerEditText.setText(dateFormat.format(new Date()));
+        formattedDate = dateFormat.format(hoy);
+        datePickerEditText.setText(formattedDate);
 
         datePickerEditText.setOnClickListener(v -> {
             MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
@@ -69,6 +71,7 @@ public class Diario extends AppCompatActivity {
             datePicker.show(getSupportFragmentManager(), "DATE_PICKER_TAG");
         });
     }
+
 
     public void descripcionDelDia(View view){
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());

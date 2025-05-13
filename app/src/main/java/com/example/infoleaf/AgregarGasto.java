@@ -63,7 +63,12 @@ public class AgregarGasto extends AppCompatActivity {
 
         double cantidad;
         try {
+
             cantidad = Double.parseDouble(cantidadTexto);
+            if(cantidad < 0){
+                Toast.makeText(this, "Cantidad inválida", Toast.LENGTH_SHORT).show();
+                return;
+            }
         } catch (NumberFormatException e) {
             Toast.makeText(this, "Cantidad inválida", Toast.LENGTH_SHORT).show();
             return;

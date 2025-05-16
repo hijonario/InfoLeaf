@@ -3,8 +3,10 @@ package com.example.infoleaf;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -50,12 +52,12 @@ public class MainActivity extends AppCompatActivity {
         String contrasena = String.valueOf(this.et_contrasena.getText());
 
         if(nombre.isEmpty()){
-            Toast.makeText(this, "Debes de rellenar el campo de usuario", Toast.LENGTH_SHORT).show();
+            showCustomToast("Debes de rellenar el campo de usuario");
             return;
         }
 
         if(contrasena.isEmpty()){
-            Toast.makeText(this, "Debes de rellenar el campo de contraseña", Toast.LENGTH_SHORT).show();
+            showCustomToast("Debes de rellenar el campo de contraseña");
             return;
         }
 
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("comprobar", comprobar);
                 startActivity(intent);
             }else{
-                Toast.makeText(this, "Nombre o Contraseña incorrctas", Toast.LENGTH_SHORT).show();
+                showCustomToast("Nombre o Contraseña incorrctas");
                 return;
             }
         } catch (SQLException e) {
@@ -77,5 +79,18 @@ public class MainActivity extends AppCompatActivity {
     public void registrar(View view){
         Intent intent = new Intent(this, Registro.class);
         startActivity(intent);
+    }
+
+    private void showCustomToast(String mensaje) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.estilo_toast, null);
+
+        TextView text = layout.findViewById(R.id.toast_text);
+        text.setText(mensaje);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 }

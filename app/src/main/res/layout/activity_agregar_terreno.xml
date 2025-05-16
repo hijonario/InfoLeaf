@@ -69,6 +69,8 @@
         android:layout_marginTop="156dp"
         android:ems="10"
         android:hint="@string/nombre"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="0dp"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
@@ -91,6 +93,8 @@
         android:layout_width="126dp"
         android:layout_height="33dp"
         android:layout_marginTop="156dp"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,6 +123,8 @@
         android:layout_marginTop="280dp"
         android:ems="10"
         android:hint="@string/ubicacion"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="0dp"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -131,6 +137,8 @@
         android:layout_marginTop="340dp"
         android:ems="10"
         android:hint="@string/poligono"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="0dp"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -143,19 +151,23 @@
         android:layout_marginTop="340dp"
         android:ems="10"
         android:hint="@string/parcela"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="0dp"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/et_superficie_AT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="223dp"
+        android:layout_height="37dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="400dp"
         android:ems="10"
+        android:fontFamily="@font/poppins_medium"
         android:hint="@string/superficie"
         android:inputType="text"
+        android:paddingTop="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

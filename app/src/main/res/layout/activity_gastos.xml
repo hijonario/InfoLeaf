@@ -8,6 +8,17 @@
     android:background="@drawable/fondo_menu"
     tools:context=".Gastos">
 
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondo_gastos"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
@@ -17,6 +28,7 @@
         android:layout_marginEnd="137dp"
         android:layout_marginBottom="641dp"
         android:fontFamily="@font/baloo_da"
+        android:textColor="#B4B4B4"
         android:text="@string/gastos"
         android:textSize="34dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +42,7 @@
         android:layout_height="47dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="654dp"
-        android:background="@drawable/fondo_boton"
+        android:background="@drawable/fondo_boton2"
         android:fontFamily="@font/baloo_da"
         android:onClick="salir"
         android:text="@string/salir"
@@ -51,7 +63,7 @@
         android:layout_marginStart="21dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="21dp"
-        android:background="#99FFFFFF"
+        android:background="#DDFFFFFF"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +90,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="640dp"
-        android:background="@drawable/fondo_boton"
+        android:background="@drawable/fondo_boton2"
         android:onClick="agregarGasto"
         android:text="+"
         android:textColor="@color/black"

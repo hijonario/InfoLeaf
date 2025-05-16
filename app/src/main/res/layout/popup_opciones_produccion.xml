@@ -14,31 +14,43 @@
         android:orientation="horizontal"
         android:gravity="center">
 
-        <Button
+        <ImageButton
             android:id="@+id/btnUva"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_margin="8dp"
-            android:minWidth="88dp"
-            android:text="Uva" />
+            android:src="@drawable/uva"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:cropToPadding="false"
+            android:padding="0dp"
+            android:background="@null"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/btnOlivo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_margin="8dp"
-            android:minWidth="88dp"
-            android:text="Olivo" />
+            android:src="@drawable/aceituna"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:cropToPadding="false"
+            android:padding="0dp"
+            android:background="@null"/>
     </LinearLayout>
 
     <!-- Segunda fila-->
-    <Button
+    <ImageButton
         android:id="@+id/btnCereal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:layout_gravity="center"
-        android:minWidth="88dp"
-        android:text="Cereal" />
+        android:src="@drawable/cereal"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:cropToPadding="false"
+        android:padding="0dp"
+        android:background="@null" />
 
 </LinearLayout>

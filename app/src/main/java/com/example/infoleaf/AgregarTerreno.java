@@ -1,6 +1,7 @@
 package com.example.infoleaf;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -9,6 +10,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -35,6 +37,9 @@ public class AgregarTerreno extends AppCompatActivity {
     private ArrayAdapter<String> spinnerAdapter;
     private String id;
 
+    private EditText etNombre;
+    private CheckBox cbPozo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,8 @@ public class AgregarTerreno extends AppCompatActivity {
         ListView listView = findViewById(R.id.list_parcela_AT);
         terrenoAdapter = new TerrenoAdapter(this, listaTerrenos);
         listView.setAdapter(terrenoAdapter);
+        etNombre = findViewById(R.id.et_nombreAT);
+        cbPozo = findViewById(R.id.cb_pozo_AT);
 
         spinner = findViewById(R.id.spinner_AT);
         cargarPlantacionesEnSpinner();
@@ -81,7 +88,7 @@ public class AgregarTerreno extends AppCompatActivity {
             etUbicacion.setText("");
             etSuperficie.setText("");
         }else{
-            Toast.makeText(this, "Agrega correctamente todos los campos", Toast.LENGTH_SHORT).show();
+            showCustomToast("Agrega correctamente todos los campos");
         }
     }
 
@@ -94,13 +101,11 @@ public class AgregarTerreno extends AppCompatActivity {
             spinner.setAdapter(spinnerAdapter);
         } catch (SQLException e) {
             e.printStackTrace();
-            Toast.makeText(this, "Error cargando plantaciones", Toast.LENGTH_SHORT).show();
+            showCustomToast("Error cargando plantaciones");
         }
     }
 
     public void guardarTierra(View view) {
-        EditText etNombre = findViewById(R.id.et_nombreAT);
-        CheckBox cbPozo = findViewById(R.id.cb_pozo_AT);
         String nombreTierra = etNombre.getText().toString().trim();
         boolean tienePozo = cbPozo.isChecked();
 
@@ -110,12 +115,12 @@ public class AgregarTerreno extends AppCompatActivity {
         String idUsuario = id;
 
         if (listaTerrenos.isEmpty()) {
-            Toast.makeText(this, "Debes añadir al menos un poligono", Toast.LENGTH_SHORT).show();
+            showCustomToast("Debes añadir al menos un poligono");
             return;
         }
 
         if (nombreTierra.isEmpty()) {
-            Toast.makeText(this, "El nombre de la tierra no puede estar vacío", Toast.LENGTH_SHORT).show();
+            showCustomToast("El nombre de la tierra no puede estar vacío");
             return;
         }
 
@@ -123,14 +128,14 @@ public class AgregarTerreno extends AppCompatActivity {
         try {
             boolean insertado = dao.insertarTierraConTerrenos(nombreTierra, idUsuario, idPlantacion, tienePozo, listaTerrenos);
             if (insertado) {
-                Toast.makeText(this, "Tierra guardada correctamente", Toast.LENGTH_SHORT).show();
+                showCustomToast( "Tierra guardada correctamente");
                 finish(); // o limpiar campos
             } else {
-                Toast.makeText(this, "No se pudo guardar la tierra", Toast.LENGTH_SHORT).show();
+                showCustomToast("No se pudo guardar la tierra");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            Toast.makeText(this, "Error guardando tierra", Toast.LENGTH_SHORT).show();
+            showCustomToast("Error guardando tierra");
         }
     }
 
@@ -161,7 +166,7 @@ public class AgregarTerreno extends AppCompatActivity {
                 ((EditText) findViewById(R.id.et_superficie_AT)).setText(superficie);
 
             } catch (JSONException e) {
-                Toast.makeText(this, "Error al interpretar los datos", Toast.LENGTH_SHORT).show();
+                showCustomToast("Error al interpretar los datos");
             }
         });
 
@@ -178,5 +183,18 @@ public class AgregarTerreno extends AppCompatActivity {
 
     public void salir (View view){
         finish();
+    }
+
+    private void showCustomToast(String mensaje) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.estilo_toast, null);
+
+        TextView text = layout.findViewById(R.id.toast_text);
+        text.setText(mensaje);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 }

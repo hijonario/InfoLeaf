@@ -207,4 +207,6 @@ public class VistaMapa extends Dialog {
     public void setOnParcelaDataReceivedListener(OnParcelaDataReceived listener) {
         this.listener = listener;
     }
+
+
 }

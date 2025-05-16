@@ -4,11 +4,13 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,7 +77,7 @@ public class Produccion extends AppCompatActivity {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            Toast.makeText(this, "Error cargando producciones", Toast.LENGTH_SHORT).show();
+            showCustomToast("Error cargando producciones");
         }
     }
 
@@ -95,9 +97,9 @@ public class Produccion extends AppCompatActivity {
 
         }
 
-        Button btnOption1 = dialog.findViewById(R.id.btnUva);
-        Button btnOption2 = dialog.findViewById(R.id.btnOlivo);
-        Button btnOption3 = dialog.findViewById(R.id.btnCereal);
+        ImageButton btnOption1 = dialog.findViewById(R.id.btnUva);
+        ImageButton btnOption2 = dialog.findViewById(R.id.btnOlivo);
+        ImageButton btnOption3 = dialog.findViewById(R.id.btnCereal);
 
         btnOption1.setOnClickListener(v -> {
             Intent intent = new Intent(this, AgregarProduccion.class);
@@ -120,6 +122,19 @@ public class Produccion extends AppCompatActivity {
             startActivity(intent);
         });
         dialog.show();
+    }
+
+    private void showCustomToast(String mensaje) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.estilo_toast, null);
+
+        TextView text = layout.findViewById(R.id.toast_text);
+        text.setText(mensaje);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 
 

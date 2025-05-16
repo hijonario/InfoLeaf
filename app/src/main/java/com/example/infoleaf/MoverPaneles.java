@@ -3,18 +3,23 @@ package com.example.infoleaf;
 import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.DragEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -44,10 +49,10 @@ public class MoverPaneles extends AppCompatActivity {
     private TextView tvDescripcion;
     private Spinner spinner;
 
+    private ScrollView leftScrollContainer;
+    private ScrollView rightScrollContainer;
     private LinearLayout leftContainer;
     private LinearLayout rightContainer;
-
-
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -59,86 +64,78 @@ public class MoverPaneles extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-
-
-
         });
 
         id = getIntent().getStringExtra("id");
 
-        leftContainer = findViewById(R.id.left_container);
-        rightContainer = findViewById(R.id.right_container);
+        // Cambiamos a ScrollView y obtenemos los LinearLayout internos
+        leftScrollContainer = findViewById(R.id.left_scroll_container);
+        rightScrollContainer = findViewById(R.id.right_scroll_container);
+        leftContainer = (LinearLayout) leftScrollContainer.getChildAt(0);
+        rightContainer = (LinearLayout) rightScrollContainer.getChildAt(0);
 
         tvDescripcion = findViewById(R.id.tv_descripcion);
         spinner = findViewById(R.id.combo_tierras);
 
-        TextView block1 = findViewById(R.id.block_1);
-        TextView block2 = findViewById(R.id.block_2);
+    //            TextView block1 = findViewById(R.id.block_1);
+    //            TextView block2 = findViewById(R.id.block_2);
 
         configurarDatePicker();
         configurarSpinnerTierras();
 
         // Listener para iniciar el arrastre
-        View.OnLongClickListener dragStartListener = new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                ClipData clipData = ClipData.newPlainText("label", ((TextView) view).getText());
-                View.DragShadowBuilder dragShadow = new View.DragShadowBuilder(view);
-                view.startDragAndDrop(clipData, dragShadow, view, 0);
-                return true;
-            }
+        View.OnLongClickListener dragStartListener = view -> {
+            ClipData clipData = ClipData.newPlainText("label", ((TextView) view).getText());
+            View.DragShadowBuilder dragShadow = new View.DragShadowBuilder(view);
+            view.startDragAndDrop(clipData, dragShadow, view, 0);
+            return true;
         };
 
-        block1.setOnLongClickListener(dragStartListener);
-        block2.setOnLongClickListener(dragStartListener);
+    //            block1.setOnLongClickListener(dragStartListener);
+    //            block2.setOnLongClickListener(dragStartListener);
 
         // Listener para manejar el evento de arrastre
-        View.OnDragListener dragListener = new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View view, DragEvent event) {
-                switch (event.getAction()) {
-                    case DragEvent.ACTION_DRAG_STARTED:
-                        return true;
+        View.OnDragListener dragListener = (view, event) -> {
+            switch (event.getAction()) {
+                case DragEvent.ACTION_DRAG_STARTED:
+                    return true;
 
-                    case DragEvent.ACTION_DRAG_ENTERED:
-                        view.setBackgroundResource(android.R.color.holo_blue_light);
-                        return true;
+                case DragEvent.ACTION_DRAG_ENTERED:
+                    view.setBackgroundResource(android.R.color.holo_blue_light);
+                    return true;
 
-                    case DragEvent.ACTION_DRAG_EXITED:
-                        view.setBackgroundResource(android.R.color.transparent);
-                        return true;
+                case DragEvent.ACTION_DRAG_EXITED:
+                    view.setBackgroundResource(android.R.color.transparent);
+                    return true;
 
-                    case DragEvent.ACTION_DROP:
-                        View draggedView = (View) event.getLocalState();
+                case DragEvent.ACTION_DROP:
+                    View draggedView = (View) event.getLocalState();
 
-                        // Asegurarse de que el elemento arrastrado se elimine de su contenedor anterior
-                        LinearLayout owner = (LinearLayout) draggedView.getParent();
-                        owner.removeView(draggedView);
+                    // Asegurarse de que el elemento arrastrado se elimine de su contenedor anterior
+                    LinearLayout owner = (LinearLayout) draggedView.getParent();
+                    owner.removeView(draggedView);
 
-                        // Agregar el bloque al nuevo contenedor
-                        LinearLayout container = (LinearLayout) view;
-                        container.addView(draggedView);
+                    // Agregar el bloque al nuevo contenedor
+                    LinearLayout container = (LinearLayout) view;
+                    container.addView(draggedView);
 
-                        // Reiniciar el listener para que el bloque pueda ser movido nuevamente
-                        draggedView.setOnLongClickListener(dragStartListener);
+                    // Reiniciar el listener para que el bloque pueda ser movido nuevamente
+                    draggedView.setOnLongClickListener(dragStartListener);
 
-                        view.setBackgroundResource(android.R.color.transparent);
-                        return true;
+                    view.setBackgroundResource(android.R.color.transparent);
+                    return true;
 
-                    case DragEvent.ACTION_DRAG_ENDED:
-                        view.setBackgroundResource(android.R.color.transparent);
-                        return true;
+                case DragEvent.ACTION_DRAG_ENDED:
+                    view.setBackgroundResource(android.R.color.transparent);
+                    return true;
 
-                    default:
-                        return false;
-                }
+                default:
+                    return false;
             }
         };
 
         leftContainer.setOnDragListener(dragListener);
         rightContainer.setOnDragListener(dragListener);
-
-
     }
 
     public void salir(View view) {
@@ -208,7 +205,6 @@ public class MoverPaneles extends AppCompatActivity {
     }
 
     private void cargarTrabajosEnBloques(int idTierra) {
-        leftContainer = findViewById(R.id.left_container);
         leftContainer.removeAllViews();
 
         TierraDAO tierraDAO = new TierraDAO();
@@ -224,7 +220,22 @@ public class MoverPaneles extends AppCompatActivity {
                 bloque.setTextSize(16);
                 bloque.setBackgroundResource(R.drawable.fondo_boton);
 
-                // Hacer el bloque arrastrable
+                Typeface tipoFuente = ResourcesCompat.getFont(this, R.font.poppins_medium);
+                bloque.setTypeface(tipoFuente);
+                bloque.setPadding(bloque.getPaddingLeft(), 0, bloque.getPaddingRight(), bloque.getPaddingBottom());
+
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+
+                int marginBottomPx = (int) TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()
+                );
+
+                params.setMargins(0, 0, 0, marginBottomPx);
+                bloque.setLayoutParams(params);
+
                 bloque.setOnLongClickListener(view -> {
                     ClipData clipData = ClipData.newPlainText("label", ((TextView) view).getText());
                     View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
@@ -234,11 +245,11 @@ public class MoverPaneles extends AppCompatActivity {
 
                 leftContainer.addView(bloque);
             }
-
         } catch (SQLException e) {
-            Toast.makeText(this, "Error al cargar trabajos", Toast.LENGTH_SHORT).show();
+            showCustomToast("Error al cargar trabajos");
         }
     }
+
 
 
     //Metodo para almacenar lo realizado en el textView
@@ -288,7 +299,7 @@ public class MoverPaneles extends AppCompatActivity {
         String descripcion = descripcionView.getText().toString();
 
         if (descripcion.isEmpty()) {
-            Toast.makeText(this, "La descripción está vacía", Toast.LENGTH_SHORT).show();
+            showCustomToast("La descripción está vacía");
             return;
         }
 
@@ -297,7 +308,7 @@ public class MoverPaneles extends AppCompatActivity {
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
             fecha = format.parse(datePickerEditText.getText().toString());
         } catch (Exception e) {
-            Toast.makeText(this, "Fecha inválida", Toast.LENGTH_SHORT).show();
+            showCustomToast("Fecha inválida");
             return;
         }
 
@@ -307,12 +318,12 @@ public class MoverPaneles extends AppCompatActivity {
             if (insertado) {
                 this.tvDescripcion.setText("");
                 rightContainer.removeAllViews();
-                Toast.makeText(this, "Entrada agregada correctamente", Toast.LENGTH_SHORT).show();
+                showCustomToast("Entrada agregada correctamente");
             } else {
-                Toast.makeText(this, "No se pudo insertar la entrada", Toast.LENGTH_SHORT).show();
+                showCustomToast("No se pudo insertar la entrada");
             }
         } catch (SQLException e) {
-            Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            showCustomToast("Error: " + e.getMessage());
         }
     }
 
@@ -326,6 +337,19 @@ public class MoverPaneles extends AppCompatActivity {
     public void limpiar(View view){
         this.tvDescripcion.setText("");
         rightContainer.removeAllViews();
+    }
+
+    private void showCustomToast(String mensaje) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.estilo_toast, null);
+
+        TextView text = layout.findViewById(R.id.toast_text);
+        text.setText(mensaje);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 
 }

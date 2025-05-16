@@ -2,6 +2,7 @@ package com.example.infoleaf;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
@@ -72,7 +73,7 @@ public class Gastos extends AppCompatActivity {
             }
 
         } catch (SQLException e) {
-            Toast.makeText(this, "Error al cargar gastos", Toast.LENGTH_SHORT).show();
+            showCustomToast("Error al cargar gastos");
             e.printStackTrace();
         }
     }
@@ -85,5 +86,18 @@ public class Gastos extends AppCompatActivity {
         Intent intent = new Intent(this, AgregarGasto.class);
         intent.putExtra("id", id);
         startActivity(intent);
+    }
+
+    private void showCustomToast(String mensaje) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.estilo_toast, null);
+
+        TextView text = layout.findViewById(R.id.toast_text);
+        text.setText(mensaje);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 }

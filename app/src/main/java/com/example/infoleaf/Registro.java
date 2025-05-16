@@ -1,8 +1,10 @@
 package com.example.infoleaf;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -54,52 +56,67 @@ public class Registro extends AppCompatActivity {
         String telefono = String.valueOf(this.et_telefono.getText());
 
         if (nombre.isEmpty()){
-            Toast.makeText(this, "Debes de rellenar el campo de nombre", Toast.LENGTH_SHORT).show();
+            showCustomToast("Debes de rellenar el campo de nombre");
             return;
         }
 
         if (dni.isEmpty()){
-            Toast.makeText(this, "Debes de rellenar el campo de dni", Toast.LENGTH_SHORT).show();
+            showCustomToast("Debes de rellenar el campo de dni");
             return;
         }
 
         if (!dni.matches("^[0-9]{8}[A-Z]$")) {
-            Toast.makeText(this, "El DNI debe contener 8 números seguidos de una letra mayúscula", Toast.LENGTH_SHORT).show();
+            showCustomToast("El DNI debe contener 8 números seguidos de una letra mayúscula");
             return;
         }
 
         if (contrasena.isEmpty()){
-            Toast.makeText(this, "Debes de rellenar el campo de contraseña", Toast.LENGTH_SHORT).show();
+            showCustomToast("Debes de rellenar el campo de contraseña");
             return;
         }
 
         if (email.isEmpty()){
-            Toast.makeText(this, "Debes de rellenar el campo de email", Toast.LENGTH_SHORT).show();
+            showCustomToast("Debes de rellenar el campo de email");
             return;
         }
 
         if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
-            Toast.makeText(this, "El DNI debe contener 8 números seguidos de una letra mayúscula", Toast.LENGTH_SHORT).show();
+            showCustomToast("El formato del correo no es válido");
             return;
         }
 
         if (telefono.isEmpty()){
-            Toast.makeText(this, "Debes de rellenar el campo de telefono", Toast.LENGTH_SHORT).show();
+            showCustomToast("Debes de rellenar el campo de telefono");
             return;
         }
 
         try {
             int i = usuarioDAO.registrar(nombre, dni, contrasena, telefono, email);
             if(i == 1){
-                Toast.makeText(this, "Nombre y contraseña ya utilizada, modifica alguno de esos campos", Toast.LENGTH_LONG).show();
+                showCustomToast("Nombre y contraseña ya utilizada, modifica alguno de esos campos");
             }else if(i == 2){
-                Toast.makeText(this, "El DNI utilizada ya está en uso", Toast.LENGTH_LONG).show();
+                showCustomToast("El DNI ya está en uso");
             }else if(i == 0){
-                Toast.makeText(this, "Cuenta creada con exito", Toast.LENGTH_LONG).show();
+                showCustomToast("Cuenta creada con éxito");
             }
         } catch (SQLException e) {
+            showCustomToast("Error al registrar usuario");
             throw new RuntimeException(e);
         }
+
         finish();
+    }
+
+    private void showCustomToast(String mensaje) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.estilo_toast, null);
+
+        TextView text = layout.findViewById(R.id.toast_text);
+        text.setText(mensaje);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 }

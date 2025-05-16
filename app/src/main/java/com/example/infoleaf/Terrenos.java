@@ -2,6 +2,7 @@ package com.example.infoleaf;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class Terrenos extends AppCompatActivity {
     private HashMap<String, List<TerrenosModel>> listTerrenos;
     private String id;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +56,7 @@ public class Terrenos extends AppCompatActivity {
         cargarDatos();
     }
 
-    private void cargarDatos() {
+    public void cargarDatos() {
         TierraDAO tierraDAO = new TierraDAO();
         TerrenoDAO terrenoDAO = new TerrenoDAO();
 
@@ -67,28 +69,25 @@ public class Terrenos extends AppCompatActivity {
             List<TierrasModel> tierras = tierraDAO.obtenerTodasLasTierras(idUsuario);
 
             if (tierras == null || tierras.isEmpty()) {
-
                 textNoTierras.setVisibility(View.VISIBLE);
                 expandableListView.setVisibility(View.GONE);
             } else {
-
                 textNoTierras.setVisibility(View.GONE);
                 expandableListView.setVisibility(View.VISIBLE);
 
                 for (TierrasModel tierra : tierras) {
                     listTierras.add(tierra.getNombre());
 
-
                     List<TerrenosModel> terrenos = terrenoDAO.obtenerTerrenos(tierra.getId());
                     listTerrenos.put(tierra.getNombre(), terrenos);
                 }
 
-
                 listAdapter = new ExpandableListAdapter(this, listTierras, listTerrenos);
                 expandableListView.setAdapter(listAdapter);
             }
+
         } catch (SQLException e) {
-            Toast.makeText(this, "Error al cargar datos", Toast.LENGTH_SHORT).show();
+            showCustomToast("Error al cargar datos");
         }
     }
 
@@ -101,5 +100,20 @@ public class Terrenos extends AppCompatActivity {
         intent.putExtra("id", id);
         startActivity(intent);
     }
+
+    private void showCustomToast(String mensaje) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.estilo_toast, null);
+
+        TextView text = layout.findViewById(R.id.toast_text);
+        text.setText(mensaje);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+    }
+
+
 
 }

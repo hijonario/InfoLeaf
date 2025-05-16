@@ -176,7 +176,4 @@ public class TierraDAO extends ConexionMethods {
         return listaTrabajos;
     }
 
-
-
-
 }

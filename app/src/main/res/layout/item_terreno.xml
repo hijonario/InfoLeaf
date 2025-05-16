@@ -18,25 +18,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ubicación"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingTop="0dp"
             android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tv_poligono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Polígono"/>
+            android:text="Polígono"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingTop="0dp"/>
 
         <TextView
             android:id="@+id/tv_parcela"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Parcela"/>
+            android:text="Parcela"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingTop="0dp"/>
 
         <TextView
             android:id="@+id/tv_superficie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Superficie"/>
+            android:text="Superficie"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingTop="0dp"/>
     </LinearLayout>
 
     <Button

@@ -1,10 +1,12 @@
 package com.example.infoleaf;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -57,7 +59,7 @@ public class AgregarGasto extends AppCompatActivity {
         String cantidadTexto = etCantidad.getText().toString().trim();
 
         if (descripcion.isEmpty() || cantidadTexto.isEmpty()) {
-            Toast.makeText(this, "Complete todos los campos", Toast.LENGTH_SHORT).show();
+            showCustomToast("Complete todos los campos");
             return;
         }
 
@@ -66,11 +68,11 @@ public class AgregarGasto extends AppCompatActivity {
 
             cantidad = Double.parseDouble(cantidadTexto);
             if(cantidad < 0){
-                Toast.makeText(this, "Cantidad inválida", Toast.LENGTH_SHORT).show();
+                showCustomToast("Cantidad inválida");
                 return;
             }
         } catch (NumberFormatException e) {
-            Toast.makeText(this, "Cantidad inválida", Toast.LENGTH_SHORT).show();
+            showCustomToast("Cantidad inválida");
             return;
         }
 
@@ -78,16 +80,29 @@ public class AgregarGasto extends AppCompatActivity {
         try {
             boolean ok = dao.insertarGasto(cantidad, descripcion, new java.util.Date(selectedDate), id);
             if (ok) {
-                Toast.makeText(this, "Gasto guardado correctamente", Toast.LENGTH_SHORT).show();
+                showCustomToast("Gasto guardado correctamente");
             } else {
-                Toast.makeText(this, "No se pudo guardar el gasto", Toast.LENGTH_SHORT).show();
+                showCustomToast("No se pudo guardar el gasto");
             }
         } catch (Exception e) {
-            Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            showCustomToast("Error: " + e.getMessage());
         }
     }
 
     public void salir(View view) {
         finish();
+    }
+
+    private void showCustomToast(String mensaje) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.estilo_toast, null);
+
+        TextView text = layout.findViewById(R.id.toast_text);
+        text.setText(mensaje);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
     }
 }

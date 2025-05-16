@@ -16,6 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Cerrar" />
+        android:text="Cerrar"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="0dp"/>
 
 </RelativeLayout>

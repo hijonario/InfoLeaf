@@ -11,6 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dinero"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="0dp"
         android:textStyle="bold"
         android:textColor="#000000"
         android:textSize="16sp" />
@@ -20,6 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Descripción"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="0dp"
         android:textSize="14sp"
         android:textColor="#333333" />
 
@@ -28,6 +32,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fecha"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="0dp"
         android:textSize="14sp"
         android:textColor="#777777" />
 </LinearLayout>

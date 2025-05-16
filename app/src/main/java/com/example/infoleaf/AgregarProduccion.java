@@ -2,12 +2,14 @@ package com.example.infoleaf;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -96,7 +98,6 @@ public class AgregarProduccion extends AppCompatActivity {
     }
 
     private void configurarDatePicker() {
-        datePickerEditText = findViewById(R.id.DP_fechas);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
         datePickerEditText.setText(dateFormat.format(new Date()));
@@ -118,8 +119,6 @@ public class AgregarProduccion extends AppCompatActivity {
     }
 
     private void configurarSpinnerTierras() {
-        spinnerTierras = findViewById(R.id.combo_tierras);
-
         TierraDAO tierraDAO = new TierraDAO();
         try {
             List<TierrasModel> tierras = tierraDAO.obtenerTodasLasTierras(id);
@@ -157,17 +156,17 @@ public class AgregarProduccion extends AppCompatActivity {
     public void insertarCereal(View view) {
         try {
             if (variedad.getText().toString().isEmpty()) {
-                Toast.makeText(this, "El tipo de cereal es requerido", Toast.LENGTH_SHORT).show();
+                showCustomToast("El tipo de cereal es requerido");
                 return;
             }
 
             if (kilos.getText().toString().isEmpty()) {
-                Toast.makeText(this, "Los kilos son requeridos", Toast.LENGTH_SHORT).show();
+                showCustomToast("Los kilos son requeridos");
                 return;
             }
 
             if (datePickerEditText.getText().toString().isEmpty()) {
-                Toast.makeText(this, "La fecha es requerida", Toast.LENGTH_SHORT).show();
+                showCustomToast("La fecha es requerida");
                 return;
             }
 
@@ -176,7 +175,7 @@ public class AgregarProduccion extends AppCompatActivity {
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
                 fecha = format.parse(datePickerEditText.getText().toString());
             } catch (Exception e) {
-                Toast.makeText(this, "Formato de fecha inválido (use dd/MM/yyyy)", Toast.LENGTH_SHORT).show();
+                showCustomToast("Formato de fecha inválido (use dd/MM/yyyy)");
                 return;
             }
 
@@ -189,20 +188,20 @@ public class AgregarProduccion extends AppCompatActivity {
             try {
                 kilosCereal = Double.parseDouble(kilos.getText().toString());
             } catch (NumberFormatException e) {
-                Toast.makeText(this, "Formato inválido para kilos", Toast.LENGTH_SHORT).show();
+                showCustomToast("Formato inválido para kilos");
                 return;
             }
 
             TierraDAO tierraDAO = new TierraDAO();
             List<TierrasModel> tierras = tierraDAO.obtenerTodasLasTierras(id);
             if (tierras == null || tierras.isEmpty()) {
-                Toast.makeText(this, "No hay tierras disponibles", Toast.LENGTH_SHORT).show();
+                showCustomToast("No hay tierras disponibles");
                 return;
             }
 
             int posicionSeleccionada = spinnerTierras.getSelectedItemPosition();
             if (posicionSeleccionada < 0 || posicionSeleccionada >= tierras.size()) {
-                Toast.makeText(this, "Seleccione una tierra válida", Toast.LENGTH_SHORT).show();
+                showCustomToast("Seleccione una tierra válida");
                 return;
             }
 
@@ -216,31 +215,31 @@ public class AgregarProduccion extends AppCompatActivity {
                     kilos.setText("");
 
                     runOnUiThread(() -> {
-                        Toast.makeText(this, "Producción de cereal añadida correctamente", Toast.LENGTH_SHORT).show();
+                        showCustomToast("Producción de cereal añadida correctamente");
                     });
                 } catch (SQLException e) {
                     runOnUiThread(() -> {
                         Log.e("DB_ERROR", "Error al insertar producción", e);
-                        Toast.makeText(this, "Error al insertar: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        showCustomToast("Error al insertar: " + e.getMessage());
                     });
                 }
             }).start();
 
         } catch (Exception e) {
             Log.e("APP_ERROR", "Error inesperado", e);
-            Toast.makeText(this, "Error inesperado: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            showCustomToast("Error inesperado: " + e.getMessage());
         }
     }
 
     public void insertarOlivo(View view) {
         try {
             if (variedad.getText().toString().isEmpty()) {
-                Toast.makeText(this, "El tipo de aceituna es requerido", Toast.LENGTH_SHORT).show();
+                showCustomToast("El tipo de aceituna es requerido");
                 return;
             }
 
             if (kilosArbol.getText().toString().isEmpty()) {
-                Toast.makeText(this, "Los kilos arbol son requeridos", Toast.LENGTH_SHORT).show();
+                showCustomToast("Los kilos arbol son requeridos");
                 return;
             }
 
@@ -254,7 +253,7 @@ public class AgregarProduccion extends AppCompatActivity {
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
                 fecha = format.parse(datePickerEditText.getText().toString());
             } catch (Exception e) {
-                Toast.makeText(this, "Formato de fecha inválido (use dd/MM/yyyy)", Toast.LENGTH_SHORT).show();
+                showCustomToast("Formato de fecha inválido (use dd/MM/yyyy)");
                 return;
             }
 
@@ -269,20 +268,20 @@ public class AgregarProduccion extends AppCompatActivity {
                 kilosAceitunaArbol = Double.parseDouble(kilosArbol.getText().toString());
                 kilosAceitunaSuelo = Double.parseDouble(kilosArbol.getText().toString());
             } catch (NumberFormatException e) {
-                Toast.makeText(this, "Formato inválido para kilos", Toast.LENGTH_SHORT).show();
+                showCustomToast("Formato inválido para kilos");
                 return;
             }
 
             TierraDAO tierraDAO = new TierraDAO();
             List<TierrasModel> tierras = tierraDAO.obtenerTodasLasTierras(id);
             if (tierras == null || tierras.isEmpty()) {
-                Toast.makeText(this, "No hay tierras disponibles", Toast.LENGTH_SHORT).show();
+                showCustomToast("No hay tierras disponibles");
                 return;
             }
 
             int posicionSeleccionada = spinnerTierras.getSelectedItemPosition();
             if (posicionSeleccionada < 0 || posicionSeleccionada >= tierras.size()) {
-                Toast.makeText(this, "Seleccione una tierra válida", Toast.LENGTH_SHORT).show();
+                showCustomToast("Seleccione una tierra válida");
                 return;
             }
 
@@ -297,46 +296,46 @@ public class AgregarProduccion extends AppCompatActivity {
                     kilosSuelo.setText("");
 
                     runOnUiThread(() -> {
-                        Toast.makeText(this, "Producción de aceituna añadida correctamente", Toast.LENGTH_SHORT).show();
+                        showCustomToast("Producción de aceituna añadida correctamente");
                     });
                 } catch (SQLException e) {
                     runOnUiThread(() -> {
                         Log.e("DB_ERROR", "Error al insertar producción", e);
-                        Toast.makeText(this, "Error al insertar: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        showCustomToast("Error al insertar: " + e.getMessage());
                     });
                 }
             }).start();
 
         } catch (Exception e) {
             Log.e("APP_ERROR", "Error inesperado", e);
-            Toast.makeText(this, "Error inesperado: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            showCustomToast("Error inesperado: " + e.getMessage());
         }
     }
 
     public void insertarUva(View view) {
         try {
             if (variedad.getText().toString().isEmpty()) {
-                Toast.makeText(this, "El tipo de uva es requerido", Toast.LENGTH_SHORT).show();
+                showCustomToast("El tipo de uva es requerido");
                 return;
             }
 
             if (kilos.getText().toString().isEmpty()) {
-                Toast.makeText(this, "Los kilos son requeridos", Toast.LENGTH_SHORT).show();
+                showCustomToast("Los kilos son requeridos");
                 return;
             }
 
             if (datePickerEditText.getText().toString().isEmpty()) {
-                Toast.makeText(this, "La fecha es requerida", Toast.LENGTH_SHORT).show();
+                showCustomToast("La fecha es requerida");
                 return;
             }
 
             if (bodega.getText().toString().isEmpty()){
-                Toast.makeText(this, "La bodega es requerida", Toast.LENGTH_SHORT).show();
+                showCustomToast("La bodega es requerida");
                 return;
             }
 
             if (grado.getText().toString().isEmpty()){
-                Toast.makeText(this, "El grado es requerido", Toast.LENGTH_SHORT).show();
+                showCustomToast("El grado es requerido");
                 return;
             }
 
@@ -345,7 +344,7 @@ public class AgregarProduccion extends AppCompatActivity {
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
                 fecha = format.parse(datePickerEditText.getText().toString());
             } catch (Exception e) {
-                Toast.makeText(this, "Formato de fecha inválido (use dd/MM/yyyy)", Toast.LENGTH_SHORT).show();
+                showCustomToast("Formato de fecha inválido (use dd/MM/yyyy)");
                 return;
             }
 
@@ -360,20 +359,20 @@ public class AgregarProduccion extends AppCompatActivity {
             try {
                 kilosUva = Double.parseDouble(kilos.getText().toString());
             } catch (NumberFormatException e) {
-                Toast.makeText(this, "Formato inválido para kilos", Toast.LENGTH_SHORT).show();
+                showCustomToast("Formato inválido para kilos");
                 return;
             }
 
             TierraDAO tierraDAO = new TierraDAO();
             List<TierrasModel> tierras = tierraDAO.obtenerTodasLasTierras(id);
             if (tierras == null || tierras.isEmpty()) {
-                Toast.makeText(this, "No hay tierras disponibles", Toast.LENGTH_SHORT).show();
+                showCustomToast("No hay tierras disponibles");
                 return;
             }
 
             int posicionSeleccionada = spinnerTierras.getSelectedItemPosition();
             if (posicionSeleccionada < 0 || posicionSeleccionada >= tierras.size()) {
-                Toast.makeText(this, "Seleccione una tierra válida", Toast.LENGTH_SHORT).show();
+                showCustomToast("Seleccione una tierra válida");
                 return;
             }
 
@@ -389,21 +388,32 @@ public class AgregarProduccion extends AppCompatActivity {
                     grado.setText("");
 
                     runOnUiThread(() -> {
-                        Toast.makeText(this, "Producción de uva añadida correctamente", Toast.LENGTH_SHORT).show();
+                        showCustomToast("Producción de uva añadida correctamente");
                     });
                 } catch (SQLException e) {
                     runOnUiThread(() -> {
                         Log.e("DB_ERROR", "Error al insertar producción", e);
-                        Toast.makeText(this, "Error al insertar: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        showCustomToast("Error al insertar: " + e.getMessage());
                     });
                 }
             }).start();
 
         } catch (Exception e) {
             Log.e("APP_ERROR", "Error inesperado", e);
-            Toast.makeText(this, "Error inesperado: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            showCustomToast("Error inesperado: " + e.getMessage());
         }
     }
 
+    private void showCustomToast(String mensaje) {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.estilo_toast, null);
 
+        TextView text = layout.findViewById(R.id.toast_text);
+        text.setText(mensaje);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+    }
 }

@@ -34,6 +34,8 @@
         android:drawableLeft="@drawable/usuario_icono"
         android:drawablePadding="30dp"
         android:paddingStart="20dp"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -48,6 +50,8 @@
         android:drawableLeft="@drawable/llave_icono"
         android:drawablePadding="30dp"
         android:paddingStart="20dp"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_dni" />
 
@@ -62,6 +66,8 @@
         android:drawableLeft="@drawable/email_icono"
         android:drawablePadding="30dp"
         android:paddingStart="20dp"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_contrasenaIS" />
 
@@ -76,6 +82,8 @@
         android:drawableLeft="@drawable/telefono_icono"
         android:drawablePadding="30dp"
         android:paddingStart="20dp"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
@@ -90,6 +98,8 @@
         android:drawableLeft="@drawable/tarjeta_icono"
         android:drawablePadding="30dp"
         android:paddingStart="20dp"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_nombre" />
 

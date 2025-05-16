@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_menu"
     tools:context=".Diario">
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondo_diario"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/titulo_VerDiario"
@@ -27,7 +38,7 @@
         android:layout_height="47dp"
         android:layout_marginTop="42dp"
         android:layout_marginBottom="654dp"
-        android:background="@drawable/fondo_boton"
+        android:background="@drawable/fondo_boton2"
         android:fontFamily="@font/baloo_da"
         android:onClick="salir"
         android:text="@string/salir"
@@ -46,11 +57,13 @@
         android:layout_width="115dp"
         android:layout_height="45dp"
         android:layout_marginTop="44dp"
-        android:background="@drawable/fondo_boton"
+        android:background="@drawable/fondo_boton2"
         android:clickable="true"
         android:focusable="false"
         android:inputType="none"
         android:paddingStart="10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.945"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +74,7 @@
         android:layout_width="373dp"
         android:layout_height="313dp"
         android:layout_marginTop="116dp"
-        android:background="@drawable/fondo_boton"
+        android:background="@drawable/fondo_boton2"
         android:ems="10"
         android:focusable="false"
         android:inputType="text"
@@ -85,11 +98,13 @@
             android:id="@+id/tv_descripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#599E9E9E"
+            android:background="#EEBCBCBC"
             android:padding="8dp"
             android:scrollbars="vertical"
             android:textColor="@android:color/black"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingTop="0dp"/>
     </ScrollView>
 
     <Button
@@ -97,7 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="440dp"
-        android:background="@drawable/fondo_boton"
+        android:background="@drawable/fondo_boton2"
         android:fontFamily="@font/baloo_da"
         android:onClick="descripcionDelDia"
         android:text="@string/buscar"

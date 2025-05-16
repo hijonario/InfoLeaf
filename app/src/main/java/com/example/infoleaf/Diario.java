@@ -41,6 +41,7 @@ public class Diario extends AppCompatActivity {
         });
         id = getIntent().getStringExtra("id");
         tvDescripcion = findViewById(R.id.tv_descripcion);
+        datePickerEditText = findViewById(R.id.DP_fechas);
 
         configurarDatePicker();
     }
@@ -50,7 +51,6 @@ public class Diario extends AppCompatActivity {
     }
 
     private void configurarDatePicker() {
-        datePickerEditText = findViewById(R.id.DP_fechas);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         Date hoy = new Date();
 

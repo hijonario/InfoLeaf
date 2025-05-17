@@ -1,6 +1,7 @@
 package com.example.infoleaf.adapters;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -12,7 +13,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.example.infoleaf.Produccion;
 import com.example.infoleaf.R;
+import com.example.infoleaf.Terrenos;
+import com.example.infoleaf.dao.ProduccionDAO;
 import com.example.infoleaf.dao.TerrenoDAO;
 import com.example.infoleaf.dao.TierraDAO;
 import com.example.infoleaf.models.TerrenosModel;
@@ -26,8 +30,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<String> listTierras;
     private HashMap<String, List<TerrenosModel>> listTerrenos;
     private boolean modoEliminar = false;
-    private TerrenoDAO terrenoDAO = new TerrenoDAO(); // Asegúrate de tener acceso al DAO
-    private TierraDAO tierraDAO = new TierraDAO();
 
     public ExpandableListAdapter(Context context, List<String> listTierras, HashMap<String, List<TerrenosModel>> listTerrenos) {
         this.context = context;
@@ -89,7 +91,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
-    // Vista del hijo (Terreno)
     @SuppressLint("InflateParams")
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
@@ -97,29 +98,23 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(context);
-            convertView = inflater.inflate(R.layout.terreno_item, parent, false); // ✅ Asegúrate de tener este layout
+            convertView = inflater.inflate(R.layout.terreno_item, parent, false);
         }
 
-        // Referencias a los TextViews
         TextView textPoligono = convertView.findViewById(R.id.textPoligono);
         TextView textNumParcela = convertView.findViewById(R.id.textNumParcela);
         TextView textUbicacion = convertView.findViewById(R.id.textUbicacion);
         TextView textSuperficie = convertView.findViewById(R.id.textSuperficie);
 
-        // Asignación de valores
         textPoligono.setText("Polígono: " + terreno.getPoligono());
         textNumParcela.setText("Parcela: " + terreno.getNum_parcela());
         textUbicacion.setText("Ubicación: " + terreno.getUbicacion());
         textSuperficie.setText("Superficie: " + terreno.getSuperficie() + " ha");
 
-        // Configuración del click en el terreno (si está en modo eliminar)
-        if (modoEliminar) {
-            convertView.setOnClickListener(v -> {
-            });
-        }
 
         return convertView;
     }
+
 
     @Override
     public boolean isChildSelectable(int i, int i1) {

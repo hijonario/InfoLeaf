@@ -21,7 +21,7 @@ public class GastosDAO extends ConexionMethods {
         }
 
         try {
-            String query = "SELECT EXTRACT(YEAR FROM fecha) AS anio, dinero, descripcion, fecha " +
+            String query = "SELECT Id_Gastos, EXTRACT(YEAR FROM fecha) AS anio, dinero, descripcion, fecha " +
                     "FROM gastos WHERE id_usuario = ? " +
                     "ORDER BY anio DESC, fecha ASC";
 
@@ -30,12 +30,13 @@ public class GastosDAO extends ConexionMethods {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
+                int id = resultSet.getInt("Id_Gastos");
                 String anio = resultSet.getString("anio");
                 double dinero = resultSet.getDouble("dinero");
                 String descripcion = resultSet.getString("descripcion");
-                String fecha = resultSet.getDate("fecha").toString(); // yyyy-MM-dd
+                String fecha = resultSet.getDate("fecha").toString();
 
-                GastoModel gasto = new GastoModel(dinero, descripcion, fecha);
+                GastoModel gasto = new GastoModel(id, dinero, descripcion, fecha);
 
                 if (!gastosPorAnio.containsKey(anio)) {
                     gastosPorAnio.put(anio, new ArrayList<>());
@@ -76,5 +77,28 @@ public class GastosDAO extends ConexionMethods {
         }
 
         return insertado;
+    }
+
+    public boolean eliminarGasto(int idGasto) throws SQLException {
+        if (!initDBConnection()) {
+            throw new RuntimeException("Error al conectar con la base de datos");
+        }
+
+        boolean eliminado = false;
+        String query = "DELETE FROM Gastos WHERE Id_Gastos = ?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, idGasto);
+
+            eliminado = statement.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            throw new SQLException("Error al eliminar el gasto: " + e.getMessage());
+        } finally {
+            closeDBConnection();
+        }
+
+        return eliminado;
     }
 }

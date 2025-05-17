@@ -1,15 +1,20 @@
 package com.example.infoleaf.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.infoleaf.Gastos;
 import com.example.infoleaf.R;
+import com.example.infoleaf.dao.GastosDAO;
 import com.example.infoleaf.models.GastoModel;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +23,7 @@ public class AdaptadorGastos extends BaseExpandableListAdapter {
     private Context context;
     private List<String> listAnios;
     private Map<String, List<GastoModel>> mapGastos;
+    private boolean modoEliminar = false;
 
     public AdaptadorGastos(Context context, List<String> listAnios, Map<String, List<GastoModel>> mapGastos) {
         this.context = context;
@@ -87,7 +93,53 @@ public class AdaptadorGastos extends BaseExpandableListAdapter {
         txtDescripcion.setText("Descripción: " + gasto.getDescripcion());
         txtFecha.setText("Fecha: " + gasto.getFecha());
 
+        if (modoEliminar) {
+            convertView.setBackgroundResource(R.drawable.fondo_eliminar);
+            convertView.setOnClickListener(v -> mostrarDialogoConfirmacion(gasto));
+        } else {
+            convertView.setBackgroundResource(android.R.color.transparent);
+            convertView.setOnClickListener(null);
+        }
+
         return convertView;
+    }
+
+    private void mostrarDialogoConfirmacion(GastoModel gasto) {
+        new android.app.AlertDialog.Builder(context)
+                .setTitle("Confirmar eliminación")
+                .setMessage("¿Deseas eliminar este gasto?")
+                .setPositiveButton("Sí", (dialog, which) -> {
+                    eliminarGasto(gasto);
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
+    private void eliminarGasto(GastoModel gasto) {
+        new Thread(() -> {
+            try {
+                GastosDAO gastosDAO = new GastosDAO();
+                boolean eliminado = gastosDAO.eliminarGasto(gasto.getId());
+
+                ((Activity) context).runOnUiThread(() -> {
+                    if (eliminado) {
+                        Toast.makeText(context, "Gasto eliminado", Toast.LENGTH_SHORT).show();
+                        ((Gastos) context).cargarGastos();
+                    } else {
+                        Toast.makeText(context, "Error al eliminar", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } catch (SQLException e) {
+                ((Activity) context).runOnUiThread(() -> {
+                    Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                });
+            }
+        }).start();
+    }
+
+    public void setModoEliminar(boolean modoEliminar) {
+        this.modoEliminar = modoEliminar;
+        notifyDataSetChanged();
     }
 
     @Override

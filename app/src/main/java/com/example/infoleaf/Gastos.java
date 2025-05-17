@@ -29,6 +29,7 @@ public class Gastos extends AppCompatActivity {
     private AdaptadorGastos adapter;
     private TextView textNoTierras;
     private String id;
+    private boolean modoEliminar = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class Gastos extends AppCompatActivity {
         cargarGastos();
     }
 
-    private void cargarGastos() {
+    public void cargarGastos() {
         GastosDAO gastosDAO = new GastosDAO();
         String dniUsuario = id;
 
@@ -99,5 +100,11 @@ public class Gastos extends AppCompatActivity {
         toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
+    }
+
+    public void modoEliminar(View view) {
+        modoEliminar = !modoEliminar;
+        adapter.setModoEliminar(modoEliminar);
+
     }
 }

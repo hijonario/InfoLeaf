@@ -176,4 +176,36 @@ public class TierraDAO extends ConexionMethods {
         return listaTrabajos;
     }
 
+    public boolean eliminarTierra(int idTierra) throws SQLException {
+        if (!initDBConnection()) {
+            throw new RuntimeException("Fallo al conectar con la base de datos");
+        }
+
+        try {
+            connection.setAutoCommit(false);
+
+            String deleteTierraTerrenoQuery = "DELETE FROM Tierra_Terreno WHERE Id_Tierra = ?";
+            PreparedStatement psTierraTerreno = connection.prepareStatement(deleteTierraTerrenoQuery);
+            psTierraTerreno.setInt(1, idTierra);
+            psTierraTerreno.executeUpdate();
+
+            String deleteTierraQuery = "DELETE FROM Tierras WHERE Id_Tierra = ?";
+            PreparedStatement psTierra = connection.prepareStatement(deleteTierraQuery);
+            psTierra.setInt(1, idTierra);
+
+            int filasAfectadas = psTierra.executeUpdate();
+
+            connection.commit();
+
+            return filasAfectadas > 0;
+
+        } catch (SQLException e) {
+            connection.rollback();
+            throw new SQLException("Error al eliminar la tierra y sus relaciones: " + e.getMessage());
+        } finally {
+            connection.setAutoCommit(true);
+            closeDBConnection();
+        }
+    }
+
 }

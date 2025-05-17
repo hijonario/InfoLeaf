@@ -44,20 +44,6 @@ public class TerrenoDAO extends ConexionMethods {
         return listaTerrenos;
     }
 
-    public boolean eliminarTerreno(TerrenosModel terreno) throws SQLException {
-        if (!initDBConnection()) return false;
-
-        try {
-            String query = "DELETE FROM terrenos WHERE poligono = ? AND num_parcela = ?";
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, terreno.getPoligono());
-            ps.setString(2, terreno.getNum_parcela());
-            int affectedRows = ps.executeUpdate();
-            return affectedRows > 0;
-        } finally {
-            closeDBConnection();
-        }
-    }
 
 
 }

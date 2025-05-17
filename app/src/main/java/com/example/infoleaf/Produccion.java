@@ -34,6 +34,7 @@ public class Produccion extends AppCompatActivity {
     private ProduccionAdapter adapter;
     private TextView textNoProduccion;
     private String id;
+    private boolean modoEliminar = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class Produccion extends AppCompatActivity {
         cargarProducciones();
     }
 
-    private void cargarProducciones() {
+    public void cargarProducciones() {
         ProduccionDAO produccionDAO = new ProduccionDAO();
         String dniUsuario = id;
 
@@ -137,5 +138,9 @@ public class Produccion extends AppCompatActivity {
         toast.show();
     }
 
+    public void modoEliminar(View view) {
+        modoEliminar = !modoEliminar;
+        adapter.setModoEliminar(modoEliminar);
 
+    }
 }

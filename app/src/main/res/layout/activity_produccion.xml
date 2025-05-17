@@ -21,7 +21,7 @@
     <ExpandableListView
         android:id="@+id/list_gastos_AP"
         android:layout_width="369dp"
-        android:layout_height="1039dp"
+        android:layout_height="500dp"
         android:layout_marginStart="21dp"
         android:layout_marginTop="120dp"
         android:layout_marginEnd="21dp"
@@ -95,5 +95,20 @@
         app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButto3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="640dp"
+        android:background="@drawable/transparente"
+        android:onClick="modoEliminar"
+        android:scaleType="fitCenter"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/delete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

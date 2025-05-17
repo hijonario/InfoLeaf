@@ -35,7 +35,7 @@ public class ProduccionDAO extends ConexionMethods {
     }
 
     private void cargarCereal(String dniUsuario, Map<String, Map<Integer, List<ProduccionModel>>> mapa) throws SQLException {
-        String query = "SELECT C.Tipo_Cereal, C.Kilos, P.Anio, T.Nombre " +
+        String query = "SELECT C.Tipo_Cereal, C.Kilos, P.Anio, T.Nombre, P.Id " +
                 "FROM Cereal C " +
                 "JOIN Produccion P ON C.Id_Cereal = P.Id " +
                 "JOIN Tierras T ON P.Id_Tierra = T.Id_Tierra " +
@@ -48,13 +48,14 @@ public class ProduccionDAO extends ConexionMethods {
         ResultSet resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
+            Integer id = resultSet.getInt("Id");
             String tipo = "Cereal";
             int anio = resultSet.getInt("Anio");
             String nombreTierra = resultSet.getString("Nombre");
             String detalles = "Tipo: " + resultSet.getString("Tipo_Cereal") +
                     ", Kilos: " + resultSet.getDouble("Kilos");
 
-            ProduccionModel item = new ProduccionModel(nombreTierra, detalles);
+            ProduccionModel item = new ProduccionModel(id, nombreTierra, detalles);
 
             mapa.computeIfAbsent(tipo, k -> new LinkedHashMap<>());
             mapa.get(tipo).computeIfAbsent(anio, k -> new ArrayList<>());
@@ -63,7 +64,7 @@ public class ProduccionDAO extends ConexionMethods {
     }
 
     private void cargarAceituna(String dniUsuario, Map<String, Map<Integer, List<ProduccionModel>>> mapa) throws SQLException {
-        String query = "SELECT A.Kilo_Arbol, A.Kilo_Suelo, A.variedad, P.Anio, T.Nombre " +
+        String query = "SELECT A.Kilo_Arbol, A.Kilo_Suelo, A.variedad, P.Anio, T.Nombre, P.Id " +
                 "FROM Aceituna A " +
                 "JOIN Produccion P ON A.Id_Aceituna = P.Id " +
                 "JOIN Tierras T ON P.Id_Tierra = T.Id_Tierra " +
@@ -76,6 +77,7 @@ public class ProduccionDAO extends ConexionMethods {
         ResultSet resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
+            Integer id = resultSet.getInt("Id");
             String tipo = "Aceituna";
             int anio = resultSet.getInt("Anio");
             String nombreTierra = resultSet.getString("Nombre");
@@ -83,7 +85,7 @@ public class ProduccionDAO extends ConexionMethods {
                     ", Kilo Suelo: " + resultSet.getDouble("Kilo_Suelo") +
                     ", Variedad: "+ resultSet.getString("variedad");
 
-            ProduccionModel item = new ProduccionModel(nombreTierra, detalles);
+            ProduccionModel item = new ProduccionModel(id, nombreTierra, detalles);
 
             mapa.computeIfAbsent(tipo, k -> new LinkedHashMap<>());
             mapa.get(tipo).computeIfAbsent(anio, k -> new ArrayList<>());
@@ -92,7 +94,7 @@ public class ProduccionDAO extends ConexionMethods {
     }
 
     private void cargarVina(String dniUsuario, Map<String, Map<Integer, List<ProduccionModel>>> mapa) throws SQLException {
-        String query = "SELECT V.Variedad, V.Kilos, V.Grado, V.Kilogrado, V.Bodega, P.Anio, T.Nombre " +
+        String query = "SELECT V.Variedad, V.Kilos, V.Grado, V.Kilogrado, V.Bodega, P.Anio, T.Nombre, P.Id " +
                 "FROM Vina V " +
                 "JOIN Produccion P ON V.Id_Uva = P.Id " +
                 "JOIN Tierras T ON P.Id_Tierra = T.Id_Tierra " +
@@ -105,6 +107,7 @@ public class ProduccionDAO extends ConexionMethods {
         ResultSet resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
+            Integer id = resultSet.getInt("Id");
             String tipo = "Viña";
             int anio = resultSet.getInt("Anio");
             String nombreTierra = resultSet.getString("Nombre");
@@ -114,7 +117,7 @@ public class ProduccionDAO extends ConexionMethods {
                     ", Kilogrado: " + resultSet.getDouble("Kilogrado") +
                     ", Bodega: " + resultSet.getString("Bodega");
 
-            ProduccionModel item = new ProduccionModel(nombreTierra, detalles);
+            ProduccionModel item = new ProduccionModel(id, nombreTierra, detalles);
 
             mapa.computeIfAbsent(tipo, k -> new LinkedHashMap<>());
             mapa.get(tipo).computeIfAbsent(anio, k -> new ArrayList<>());
@@ -234,6 +237,25 @@ public class ProduccionDAO extends ConexionMethods {
             closeDBConnection();
         }
 
+    }
+
+    public boolean eliminarProduccion(int idProduccion) throws SQLException {
+        if (!initDBConnection()) {
+            throw new RuntimeException("Error al conectar con la base de datos");
+        }
+
+        try {
+            String query = "DELETE FROM Produccion WHERE Id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, idProduccion);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            return rowsAffected > 0;
+        } catch (Exception e) {
+            throw new SQLException("Error al eliminar la producción: " + e.getMessage());
+        } finally {
+            closeDBConnection();
+        }
     }
 
 

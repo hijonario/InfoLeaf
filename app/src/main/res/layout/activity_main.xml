@@ -28,7 +28,7 @@
         android:id="@+id/et_usuarioIS"
         android:layout_width="280dp"
         android:layout_height="55dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="312dp"
         android:background="@drawable/borde01"
         android:drawableLeft="@drawable/usuario_icono"
         android:drawablePadding="30dp"
@@ -37,15 +37,14 @@
         android:hint="@string/usuario"
         android:inputType="text"
         android:paddingStart="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/et_contrasenaIS"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/et_contrasenaIS"
         android:layout_width="280dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="350dp"
+        android:layout_marginTop="364dp"
         android:background="@drawable/borde02"
         android:drawableLeft="@drawable/llave_icono"
         android:drawablePadding="30dp"
@@ -54,14 +53,13 @@
         android:hint="@string/contrasena"
         android:inputType="textPassword"
         android:paddingStart="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_usuarioIS" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="150dp"
-        android:layout_height="47dp"
+        android:layout_width="180dp"
+        android:layout_height="67dp"
         android:layout_marginTop="95dp"
         android:layout_marginEnd="281dp"
         android:layout_marginBottom="207dp"
@@ -70,11 +68,14 @@
         android:onClick="registrar"
         android:text="@string/registrar"
         android:textColor="@android:color/system_accent1_400"
+        android:textSize="20dp"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_contrasenaIS" />
+        app:layout_constraintTop_toBottomOf="@+id/et_contrasenaIS"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/id_iniciar"

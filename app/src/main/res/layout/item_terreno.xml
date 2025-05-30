@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ubicación"
+            android:textSize="20dp"
             android:fontFamily="@font/poppins_medium"
             android:paddingTop="0dp"
             android:textStyle="bold"/>
@@ -27,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Polígono"
+            android:textSize="18dp"
             android:fontFamily="@font/poppins_medium"
             android:paddingTop="0dp"/>
 
@@ -35,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Parcela"
+            android:textSize="18dp"
             android:fontFamily="@font/poppins_medium"
             android:paddingTop="0dp"/>
 
@@ -43,6 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Superficie"
+            android:textSize="18dp"
             android:fontFamily="@font/poppins_medium"
             android:paddingTop="0dp"/>
     </LinearLayout>

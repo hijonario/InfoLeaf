@@ -252,12 +252,8 @@ public class MoverPaneles extends AppCompatActivity {
 
 
 
-    //Metodo para almacenar lo realizado en el textView
-
     public void escribirDescripcion(View view) {
         LinearLayout rightContainer = findViewById(R.id.right_container);
-
-
         String tierraActual = spinner.getSelectedItem().toString();
 
         List<String> bloquesActuales = new ArrayList<>();
@@ -268,21 +264,34 @@ public class MoverPaneles extends AppCompatActivity {
             }
         }
 
-        StringBuilder textoActual = new StringBuilder(tvDescripcion.getText().toString());
+        if (bloquesActuales.isEmpty()) {
+            return;
+        }
 
-        if (!tierraActual.equals(tierraSeleccionadaAnterior)) {
+        String textoPrevio = tvDescripcion.getText().toString();
+        StringBuilder textoActual = new StringBuilder(textoPrevio);
+
+        boolean descripcionIncompleta = !textoPrevio.contains("En la parcela " + tierraActual);
+
+        if (!tierraActual.equals(tierraSeleccionadaAnterior) || descripcionIncompleta) {
             if (!textoActual.toString().isEmpty()) {
                 textoActual.append("\n\n");
             }
-            textoActual.append(tierraActual).append(":");
+
+            textoActual.append("En la parcela ")
+                    .append(tierraActual)
+                    .append(" se han realizado los siguientes trabajos: ");
 
             for (String bloque : bloquesActuales) {
-                textoActual.append(" ").append(bloque);
+                if (bloque != null) {
+                    textoActual.append(bloque).append(", ");
+                }
             }
+
+            textoActual.setLength(textoActual.length() - 2);
 
             bloquesAnteriores = new ArrayList<>(bloquesActuales);
             tierraSeleccionadaAnterior = tierraActual;
-
         } else {
             for (String bloque : bloquesActuales) {
                 if (!bloquesAnteriores.contains(bloque)) {
@@ -293,6 +302,7 @@ public class MoverPaneles extends AppCompatActivity {
         }
         tvDescripcion.setText(textoActual.toString());
     }
+
 
     public void agregarEntradaDiario(View view) {
         TextView descripcionView = findViewById(R.id.tv_descripcion);

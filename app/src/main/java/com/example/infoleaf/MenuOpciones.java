@@ -62,4 +62,8 @@ public class MenuOpciones extends AppCompatActivity {
         intent.putExtra("id", id);
         startActivity(intent);
     }
+
+    public void cerrarSesion (View view){
+        finish();
+    }
 }

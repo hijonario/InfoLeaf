@@ -139,6 +139,10 @@ public class Produccion extends AppCompatActivity {
     }
 
     public void modoEliminar(View view) {
+        if (textNoProduccion.getVisibility() == View.VISIBLE) {
+            return;
+        }
+
         modoEliminar = !modoEliminar;
         adapter.setModoEliminar(modoEliminar);
 

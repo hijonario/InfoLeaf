@@ -29,7 +29,7 @@
         android:layout_width="91dp"
         android:layout_height="47dp"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="654dp"
+        android:layout_marginBottom="640dp"
         android:background="@drawable/fondo_boton"
         android:fontFamily="@font/baloo_da"
         android:onClick="salir"
@@ -41,8 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ExpandableListView
         android:id="@+id/list_parcela_AT"
@@ -54,9 +53,12 @@
         android:background="#99FFFFFF"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView6" >
+        app:layout_constraintTop_toBottomOf="@id/textView6"
+        app:layout_constraintVertical_bias="0.0">
 
 
     </ExpandableListView>

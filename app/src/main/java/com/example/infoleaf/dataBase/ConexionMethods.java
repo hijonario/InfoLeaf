@@ -7,19 +7,16 @@ public class ConexionMethods {
     protected Connection connection;
 
     protected boolean initDBConnection(){
-        connection = SQLDataBaseManager.connect();
+        connection = SQLDataBaseManagerRemoto.connect();
         return true;
     }
 
     protected boolean closeDBConnection(){
         try {
-            SQLDataBaseManager.disconnect(connection);
+            SQLDataBaseManagerRemoto.disconnect();
             return true;
-        } catch (SQLException e) {
-            System.err.println("Error al desconectar con la base de datos");
-        } catch (Exception e) {
+        }  catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return false;
     }
 }

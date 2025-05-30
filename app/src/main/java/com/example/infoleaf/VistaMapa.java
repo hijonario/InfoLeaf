@@ -4,11 +4,14 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.Window;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -151,7 +154,7 @@ public class VistaMapa extends Dialog {
                     e.printStackTrace();
 
                     ((android.app.Activity) vistaMapa.context).runOnUiThread(() -> {
-                        Toast.makeText(vistaMapa.context, errorMsg, Toast.LENGTH_LONG).show();
+//                        Toast.makeText(vistaMapa.context, errorMsg, Toast.LENGTH_LONG).show();
                         Log.e("API_ERROR", errorMsg, e);
                     });
                 } finally {
@@ -194,7 +197,7 @@ public class VistaMapa extends Dialog {
 
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(context, "Error al procesar los datos", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "Error al procesar los datos", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -207,6 +210,7 @@ public class VistaMapa extends Dialog {
     public void setOnParcelaDataReceivedListener(OnParcelaDataReceived listener) {
         this.listener = listener;
     }
+
 
 
 }

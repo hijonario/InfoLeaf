@@ -123,15 +123,15 @@ public class AdaptadorGastos extends BaseExpandableListAdapter {
 
                 ((Activity) context).runOnUiThread(() -> {
                     if (eliminado) {
-                        Toast.makeText(context, "Gasto eliminado", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "Gasto eliminado", Toast.LENGTH_SHORT).show();
                         ((Gastos) context).cargarGastos();
                     } else {
-                        Toast.makeText(context, "Error al eliminar", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "Error al eliminar", Toast.LENGTH_SHORT).show();
                     }
                 });
             } catch (SQLException e) {
                 ((Activity) context).runOnUiThread(() -> {
-                    Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 });
             }
         }).start();
@@ -146,4 +146,5 @@ public class AdaptadorGastos extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
     }
+
 }

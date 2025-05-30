@@ -40,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
         this.et_contrasena = findViewById(R.id.et_contrasenaIS);
     }
 
+    protected void onResume(){
+        super.onResume();
+        this.et_nombre.setText("");
+        this.et_contrasena.setText("");
+    }
+
 
 
     public void mover(View view){

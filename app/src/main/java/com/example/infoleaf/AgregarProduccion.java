@@ -266,7 +266,7 @@ public class AgregarProduccion extends AppCompatActivity {
             double kilosAceitunaSuelo;
             try {
                 kilosAceitunaArbol = Double.parseDouble(kilosArbol.getText().toString());
-                kilosAceitunaSuelo = Double.parseDouble(kilosArbol.getText().toString());
+                kilosAceitunaSuelo = Double.parseDouble(kilosSuelo.getText().toString());
             } catch (NumberFormatException e) {
                 showCustomToast("Formato inválido para kilos");
                 return;

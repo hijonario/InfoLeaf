@@ -195,6 +195,7 @@
         android:id="@+id/tv_nombreMO"
         android:layout_width="110dp"
         android:layout_height="46dp"
+        android:layout_marginEnd="76dp"
         android:background="@drawable/transparente"
         android:fontFamily="@font/baloo_da"
         android:paddingTop="8dp"
@@ -203,5 +204,15 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="71dp"
+        android:layout_height="81dp"
+        android:layout_marginEnd="1dp"
+        android:onClick="cerrarSesion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cerrar_sesion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

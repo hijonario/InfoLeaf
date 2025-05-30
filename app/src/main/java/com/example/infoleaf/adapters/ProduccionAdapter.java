@@ -2,6 +2,7 @@ package com.example.infoleaf.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,6 +109,7 @@ public class ProduccionAdapter extends BaseExpandableListAdapter {
 
         text1.setText("Año: " + anio);
         StringBuilder detalles = new StringBuilder();
+
         for (ProduccionModel item : items) {
             if (modoEliminar) {
                 convertView.setBackgroundResource(R.drawable.fondo_eliminar);
@@ -122,6 +124,9 @@ public class ProduccionAdapter extends BaseExpandableListAdapter {
                     .append(item.getDetalles())
                     .append("\n");
         }
+
+        text2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        text2.setText(detalles.toString());
 
         text2.setText(detalles.toString().trim());
 
@@ -149,15 +154,15 @@ public class ProduccionAdapter extends BaseExpandableListAdapter {
 
                 ((Activity) context).runOnUiThread(() -> {
                     if (eliminado) {
-                        Toast.makeText(context, "Produccion eliminada", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "Produccion eliminada", Toast.LENGTH_SHORT).show();
                         ((Produccion) context).cargarProducciones();
                     } else {
-                        Toast.makeText(context, "Error al eliminar", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "Error al eliminar", Toast.LENGTH_SHORT).show();
                     }
                 });
             } catch (SQLException e) {
                 ((Activity) context).runOnUiThread(() -> {
-                    Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 });
             }
         }).start();

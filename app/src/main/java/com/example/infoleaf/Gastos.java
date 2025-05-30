@@ -103,6 +103,9 @@ public class Gastos extends AppCompatActivity {
     }
 
     public void modoEliminar(View view) {
+        if (textNoTierras.getVisibility() == View.VISIBLE) {
+            return;
+        }
         modoEliminar = !modoEliminar;
         adapter.setModoEliminar(modoEliminar);
 

@@ -19,3 +19,8 @@ Requisitos
 Instrucciones de Uso
 1. Clona el repositorio:
     git clone https://github.com/hijonario/InfoLeaf
+
+2. Ejecuta en segundo plano la siguiente API:
+   git clone https://github.com/hijonario/SigPacAPI
+
+3. Ejecuta la aplicación desde Android Studio.

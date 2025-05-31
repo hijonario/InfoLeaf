@@ -93,7 +93,7 @@ public class Registro extends AppCompatActivity {
         try {
             int i = usuarioDAO.registrar(nombre, dni, contrasena, telefono, email);
             if(i == 1){
-                showCustomToast("Nombre y contraseña ya utilizada, modifica alguno de esos campos");
+                //showCustomToast("Nombre y contraseña ya utilizada, modifica alguno de esos campos");
             }else if(i == 2){
                 showCustomToast("El DNI ya está en uso");
             }else if(i == 0){
